@@ -1,0 +1,66 @@
+</head>  
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" >
+        <strong> <img src="{{url_for('static', filename='img/piedradelcanada.png')}}" alt="" class="logo-img">Piedra del Canada:  El Órigen</strong>
+      </a>
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+
+          {% if session['loggedin'] %}
+                 
+        
+           <li class="nav-item dropdown active">
+                    <a class="nav-link border border-light rounded dropdown-toggle hoverable waves-light" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-running mr-2"></i>
+                    {{usuario[1]}} {{usuario[2]}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right menu-sup" aria-labelledby="navbarDropdownMenuLink">
+                         
+                        <a class="dropdown-item hoverable waves-effect"onclick="salir();"> 
+                        <form class="nav_formu" id="logout-form" method="POST" action="/logout">
+                                            <input type="hidden" required value="logout" name="method"></form>
+                                        <i class="fas fa-door-open mr-2"></i> Cerrar sesión
+                                      </a>                      
+                    </div>
+                </li>
+        {% else %}
+
+        
+          <li class="nav-item {{session['login']}}">
+            <a href="/login" class="nav-link border border-light rounded hoverable hoverable waves-light"
+              >
+              <i class="fas fa-user-check mr-2"></i>Consulta tu estado
+            </a>
+          </li>
+          <li class="nav-item {{session['registro']}}">
+            <a href="/registro" class="nav-link border border-light rounded hoverable waves-light">
+              <i class="fas fa-user-plus mr-2"></i>Registrarse
+            </a>
+          </li>
+            
+          {% endif %}
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>

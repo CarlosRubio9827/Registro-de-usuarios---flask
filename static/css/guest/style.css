@@ -1,0 +1,99 @@
+
+
+/* Navbar animation */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.top-nav-collapse {
+  background-color: #1D7DAD; }
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #1D7DAD; } 
+  }
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background-color: #1D7DAD; }
+
+#time-counter {
+  font-size: 5rem; }
+ 
+    
+
+    @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1D7DAD!important;
+            }
+        }
+
+  
+.center-div{
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 90%;
+  padding: 3%;
+}
+
+.center-div-link{
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 90%;
+  padding: 3%;
+}
+
+.text-intro{
+  font-weight: 300 !important;
+}
+
+.btn-circle.btn-outline-success,
+.btn-circle.btn-outline-default,
+.btn-circle.btn-outline-primary,
+.btn-circle.btn-outline-secondary,
+.btn-circle.btn-outline-warning,
+.btn-circle.btn-outline-danger,
+.btn-circle.btn-outline-info {
+  margin-top: 0px;
+    width: 40px;
+    height: 40px;
+    padding: 6px 0px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+.nav_formu{
+  width:0px!important;
+}
+.content-div{
+  width:90vw!important;
+}
+
+.btn-theme{
+  background-color: rgba(0,0,0,0.3) !important;
+}
+.btn-theme:hover{
+  background-color: rgba(29, 125, 173,0.2) !important;
+}
+.tr-theme{
+  background-color: rgba(0,0,0,0.2) !important;
+}
+.tr-theme:hover{
+  background-color: rgba(29, 125, 173,0.2) !important;
+}
+
+.nav-item{
+  background-color: rgba(0,0,0,0.5) !important;
+}
+.nav-item.active{
+  background-color: rgba(9, 71, 102, 0.4) !important;
+}
