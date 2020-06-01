@@ -1,0 +1,1 @@
+INSERT INTO `tiposangre`(`idtipoSangre`, `nombreTipoSangre`) VALUES (null,"A+"), (null,"A-"), (null,"B+"), (null,"B-"), (null,"AB+"), (null,"AB-"), (null,"O+"), (null,"O-")

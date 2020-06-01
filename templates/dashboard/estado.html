@@ -50,14 +50,19 @@ body {
                     <i class="fas fa-running mr-2"></i>Administrador
                     </a>
                     <div class="dropdown-menu dropdown-menu-right menu-sup" aria-labelledby="navbarDropdownMenuLink">
-                         
-                        <a class="dropdown-item hoverable waves-effect"onclick="salir();">
+                      <a class="dropdown-item hoverable waves-effect" href="/configuracion"">
+                        <i class="fas fa-cogs mr-2"></i> Configuración
+                      </a>
+
+                      <a class="dropdown-item hoverable waves-effect" onclick="salir();">
                         <form class="nav_formu" id="logout-form" method="POST" action="/logoutAdmin">
-                                            <input type="hidden" required value="logout" name="method"></form>
-                                        <i class="fas fa-door-open mr-2"></i> Cerrar sesión
-                                      </a>                      
+                          <input type="hidden" required value="logout" name="method"></form>
+                        <i class="fas fa-door-open mr-2"></i> Cerrar sesión
+                      </a>
                     </div>
+                   
                 </li>
+            
          
            
            
@@ -82,12 +87,26 @@ body {
                                     <div class="card-body">
                                             <!--Header-->
                                             <div style=" text-align: center; background-color: rgba(255,255,255,0)!important;">
-                                                    <table id="ejemplo" class="table table-sm table-hover" >
-
+                                              
+                                                  
+                                                
+                                                    <table id="datatable" class="table table-sm table-hover" >
+                                                      <div class="row">
+                                                        <div class="col-md-3 mx-auto">
+                                                          <!--Blue select-->
+                                                          <select id="myselect" class="browser-default custom-select">
+                                                            <option selected>Exportar Datos</option>
+                                                            <option value="excel">Excel</option>
+                                                            <option value="pdf">PDF</option>
+                                                          </select>
+                                                          <!--/Blue select-->
+                                                        </div>
+                                                      </div>
                                                             <thead >
                                                             <tr>
                                                                 <th>Núm Documento</th>
                                                                 <th>Nombre Completo</th>
+                                                                <th>Equipo</th>
                                                                 <th>Distancia</th>
                                                                 <th>Talla Camisa</th>
                                                                 <th>Estado Insc</th>
@@ -108,20 +127,23 @@ body {
                                                                 </td> -->  
                                                                 <td>{{usuario.7}}</td>
                                                                 <td>{{usuario.1}} {{usuario.2}}</td>
+                                                                <td>{{usuario.21|upper}}</td>
                                                                 <td>{{usuario.3}}</td>
                                                                 <td>{{usuario.16}}</td>
                                                                 <td>{{usuario.19}}</td>
                                                                 <td>{{usuario.20}}</td>
                                                                 <td>
-                                                                    
-                                                                {% if usuario.19 == "registrado" %}
+                                                                  <a class="nav-link border border-light rounded hoverable waves-light" href="mostrarUsuario/{{usuario[0]}}"">
+                                                                      <i class="fas fa-eye mr-2 text-white"></i>
+                                                                  </a>
+                                                                {% if usuario.19 == "Pendiente de Pago" %}
                                                                 
                                                                 
                                                                 <a class="nav-link border border-light rounded hoverable waves-light"onclick="confirmarPago({{usuario[0]}});">
                                                                     <form class="nav_formu" id="pago{{usuario[0]}}" method="POST" action="/confirmarPago/{{usuario[0]}}">
-                                                                        <input type="hidden" required value="pago" name="method">
-                                                                        <input type="hidden" required value="<?php echo $row->idusuarios; ?>" name="idusuarios"></form>
-                                                                            <i class="fas fa-money-check-alt mr-2"></i> Confirmar Pago 
+                                                                        
+                                                                        </form>
+                                                                            <i class="fas fa-money-check-alt mr-2"></i>
                                                                 </a>
 
                                                                         
@@ -129,16 +151,13 @@ body {
                                                                 
                                                                 <a class="nav-link border border-light rounded hoverable waves-light"onclick="entregarKit({{usuario[0]}});">
                                                                     <form class="nav_formu" id="entregarKit{{usuario[0]}}" method="POST" action="entregarKit/{{usuario[0]}}">
-                                                                        <input type="hidden" required value="entregarKit" name="method">
-                                                                        <input type="hidden" required value="<?php echo $row->idusuarios; ?>" name="idusuarios"></form>
-                                                                            <i class="fas fa-tshirt mr-2"></i> Entregar Kit
+                                                                       
+                                                                       </form>
+                                                                            <i class="fas fa-tshirt mr-2"></i>
                                                                 </a>
                                                                 
                                                                
-                                                                {% else %}
-                                                                <h4 class="text-center"><span class="badge badge-success hoverable">
-                                                                         Sin Opciones
-                                                                </span></h4>     
+                                                                    
                                                                 {% endif  %}
                                                                 </td>
                                                                 </tr>
@@ -176,7 +195,21 @@ body {
 <script type="text/javascript">
 
 $(document).ready( function () {
-    $('#ejemplo').DataTable({
+    $('#myselect').change(function () {
+    var value = $(this).val();
+    if (value == "pdf") {
+      window.open('/exportarPdf', '_blank');  
+      $('#myselect').prop('selectedIndex',0);  
+
+    }else if(value="excel"){
+      window.open('/exportarExcel', '_blank');
+      $('#myselect').prop('selectedIndex',0); 
+    }
+
+  });
+    
+    $('#datatable').DataTable({
+      
         language: {
         "decimal": "",
         "emptyTable": "No hay información",

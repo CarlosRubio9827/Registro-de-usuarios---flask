@@ -59,7 +59,7 @@ $edad = $date_time->diff(new DateTime('now', $tz))->y;
                                                 <hr class="hr-light">
 
                                                 
-                                                {% if usuario[19]=="registrado" %}
+                                                {% if usuario[19]=="Pendiente de Pago" %}
                                                  <h5 class="white-text">¿Qué paso debo seguir para confirmar mi cupo en <strong> Piedra del Canadá: El órigen?</strong></h5>
 
                                                 <h6 class="white-text">Terminar su inscripción a Piedra Del Canadá: El órigen es muy fácil, y cuentas con las siguientes opciones:</h6>
@@ -70,8 +70,8 @@ $edad = $date_time->diff(new DateTime('now', $tz))->y;
                                                         <h6 align="left"><strong>Tranferencia Bancaria</strong></h6>
                                                         <ul>
                                                             <li type="circle">
-                                                                <p style="font-size:14px;" align="left">Consigne o transfiera la suma de <span class="resaltar">{{ "${:,.0f}".format(usuario[4]) }} COP</span>
-                                                            (valor de <span class="resaltar">{{usuario[3]}}</span>)</strong> a la Cuenta de ahorros <span class="resaltar">Bancolombia</span> #<span class="resaltar">864-196988-59</span>, a nombre de <span class="resaltar">Nelson Eduardo Martinez</span>. CC <span class="resaltar">6407506</span>.</p>
+                                                                <p style="font-size:14px;" align="left">Consigne o transfiera la suma de <span class="resaltar">{{ "${:,.0f}".format(usuario[3][2]) }} COP</span>
+                                                            (valor de <span class="resaltar">{{usuario[3][1]}}</span>)</strong> a la Cuenta de ahorros <span class="resaltar">Bancolombia</span> #<span class="resaltar">864-196988-59</span>, a nombre de <span class="resaltar">Nelson Eduardo Martinez</span>. CC <span class="resaltar">6407506</span>.</p>
                                                             </li>
 
                                                             <li type="circle">
@@ -147,42 +147,96 @@ $edad = $date_time->diff(new DateTime('now', $tz))->y;
                                                         {% endif %}
                                                                 </td>
                                                                 </tr>    
-                                                            <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Distancia</strong></th>
-                                                                <td>{{usuario[3]}}</td>
-                                                                
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Distancia</strong></th>
+                                                                    <td>{{usuario[3][1]}}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Nombre Completo</strong></th>
-                                                                <td>{{ usuario[1]|upper }} {{usuario[2]|upper}}</td>
+                                                                    <th scope="row"><strong>Valor</strong></th>
+                                                                    <td>{{ "${:,.0f}".format(usuario[3][2]) }} COP</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Equipo</strong></th>
-                                                                <td>{{usuario[21]|upper}}</td>
+                                                                    <th scope="row"><strong>Nombre Completo</strong></th>
+                                                                    <td>{{ usuario[1]|upper }} {{usuario[2]|upper}}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Correo Electrónico</strong></th>
-                                                                <td>{{usuario[5]}}</td>
+                                                                    <th scope="row"><strong>Fecha de Nacimiento</strong></th>
+                                                                    <td>{{usuario[8]}}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Doc. Identidad</strong></th>
-                                                                <td>{{usuario[6]}} -:- {{usuario[7]}}</td>
+                                                                    <th scope="row"><strong>Sexo</strong></th>
+                                                                    <td>{{ usuario[9]|upper }}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Número Teléfono</strong></th>
-                                                                <td>{{usuario[10]}}</td>
+                                                                    <th scope="row"><strong>Tipo Sangre</strong></th>
+                                                                    <td>{{ usuario[14]|upper }}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Fecha de Nacimiento</strong></th>
-                                                                <td>{{usuario[8]}}</td>
+                                                                    <th scope="row"><strong>Categoría</strong></th>
+                                                                    <td>{{ usuario[4]|upper }}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Edad</strong></th>
-                                                                <td>{{usuario[22]}} Años</td>
+                                                                    <th scope="row"><strong>Equipo</strong></th>
+                                                                    <td>{{usuario[21]|upper}}</td>
                                                                 </tr>
                                                                 <tr class="hoverable tr-theme">
-                                                                <th scope="row"><strong>Talla Camisa</strong></th>
-                                                                <td><h5><span class="badge badge-primary hoverable">{{usuario[16] | upper}}</span></h5></td>
+                                                                    <th scope="row"><strong>Correo Electrónico</strong></th>
+                                                                    <td>{{usuario[5]}}</td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Doc. Identidad</strong></th>
+                                                                    <td>{{usuario[6]}} - {{usuario[7]}}</td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Número Teléfono</strong></th>
+                                                                    <td>{{usuario[10]}}</td>
+                                                                </tr>
+                                                               
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Fecha de Registro</strong></th>
+                                                                    <td>{{usuario[22]}} </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Talla Camisa</strong></th>
+                                                                    <td>
+                                                                        <h5><span class="badge badge-primary hoverable">{{usuario[16] | upper}}</span></h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Ciudad</strong></th>
+                                                                    <td>{{usuario[13]|upper}} </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Departamento</strong></th>
+                                                                    <td>{{usuario[12]|upper}} </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>País</strong></th>
+                                                                    <td>{{usuario[11]|upper}} </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Entidad de Salud</strong></th>
+                                                                    <td>{{usuario[15]|upper}} </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Nombre Contacto Emergencia</strong></th>
+                                                                    <td>
+                                                                        {% if usuario[17] == "" %}
+                                                                        No Tiene
+                                                                        {% else %}
+                                                                        {{usuario[17]|upper}} 
+                                                                        {% endif %}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="hoverable tr-theme">
+                                                                    <th scope="row"><strong>Número Contacto Emergencia</strong></th>
+                                                                    <td>
+                                                                        {% if usuario[18] == "" %}
+                                                                        No Tiene
+                                                                        {% else %}
+                                                                        {{usuario[18]|upper}} 
+                                                                        {% endif %} 
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -198,6 +252,23 @@ $edad = $date_time->diff(new DateTime('now', $tz))->y;
                                     </div>
                                     <!--/.Form-->
                                   
+                                </div>
+
+                                <div class="col-12 mb-5 content-div">
+                                    <div class="card z-depth-5 hoverable">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h4 class="white-text">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </h4>
+                                                <hr class="hr-light">
+                                                <h5 class="white-text">
+                                                    Por favor verififa que tus datos sean correctos, de lo contrario ponte en contacto con los organizadores
+                                                de la carrera para corregirlos.
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!--Fin datos Persoanles-->
